@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Avatar from '../assets/img/avatarcp.png'
 
 const Bakery = () => {
   const [user, setUser] = useState(null);
@@ -75,7 +76,7 @@ const Bakery = () => {
       ) : user ? (
         <div>
            <h2>{user.displayName}</h2>
-           <img src={user.photoURL} alt="User avatar" />
+           <img src={user.photoURL || Avatar} alt="User avatar" />
            <p>Email: {user.email}</p>
            <p>Username: {user.username}</p>
            <p>Created At: {user.createdAt}</p>
@@ -87,24 +88,6 @@ const Bakery = () => {
     </div>
   );
 
-
-  // return (
-  //   <div>
-  //     <h1>Bakery</h1>
-  //     {user ? (
-  //       <div>
-  //         <h2>{user.displayName}</h2>
-  //         <img src={user.photoURL} alt="User avatar" />
-  //         <p>Email: {user.email}</p>
-  //         <p>Username: {user.username}</p>
-  //         <p>Created At: {user.createdAt}</p>
-  //         <p>Updated At: {user.updatedAt}</p>
-  //       </div>
-  //     ) : (
-  //       <p>Loading user data...</p>
-  //     )}
-  //   </div>
-  // );
 };
 
 export default Bakery;
