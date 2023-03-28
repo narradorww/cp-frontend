@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route ath="/auth-redirect" element={AuthRedirect} />
+        <Route path="/auth-redirect" element={<AuthRedirect/>} />
         <Route path="/bakery" element={<Bakery/>} />
       </Routes>
     </Router>

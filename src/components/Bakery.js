@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const Bakery = () => {
   const [user, setUser] = useState(null);
+  const [retry, setRetry] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const refreshToken = async () => {
     try {
@@ -20,6 +22,7 @@ const Bakery = () => {
 
   const fetchUserData = async () => {
     let token = localStorage.getItem('token');
+    console.log('token de bakery', token)
 
     if (token) {
       try {
@@ -32,11 +35,12 @@ const Bakery = () => {
 
         setUser(response.data.user.user);
         console.log('User data:', response.data.user);
+        setIsLoading(false);
       } catch (error) {
         if (error.response && error.response.status === 401) {
           token = await refreshToken();
           if (token) {
-            fetchUserData();
+            setRetry(!retry); // Atualiza a variável retry para forçar o useEffect a ser executado novamente
           } else {
             console.error('Failed to fetch user data:', error);
           }
@@ -46,31 +50,61 @@ const Bakery = () => {
       }
     } else {
       console.error('No token found');
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUserData();
+    console.log('Bakery useEffect');
+    const isAuthenticated = localStorage.getItem('token') && localStorage.getItem('refreshToken');
+  
+    if (isAuthenticated) {
+      fetchUserData();
+    } else {
+      console.log('User is not authenticated');
+      
+    }
   }, []);
+  
 
   return (
     <div>
       <h1>Bakery</h1>
-      {user ? (
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : user ? (
         <div>
-            {console.log("olha esse arrombadinho", user)}
-          <h2>{user.displayName}</h2>
-          <img src={user.photoURL} alt="User avatar" />
-          <p>Email: {user.email}</p>
-          <p>Username: {user.username}</p>
-          <p>Created At: {user.createdAt}</p>
-          <p>Updated At: {user.updatedAt}</p>
-        </div>
+           <h2>{user.displayName}</h2>
+           <img src={user.photoURL} alt="User avatar" />
+           <p>Email: {user.email}</p>
+           <p>Username: {user.username}</p>
+           <p>Created At: {user.createdAt}</p>
+           <p>Updated At: {user.updatedAt}</p>
+         </div>
       ) : (
-        <p>Loading user data...</p>
+        <p>User is not authenticated.</p>
       )}
     </div>
   );
+
+
+  // return (
+  //   <div>
+  //     <h1>Bakery</h1>
+  //     {user ? (
+  //       <div>
+  //         <h2>{user.displayName}</h2>
+  //         <img src={user.photoURL} alt="User avatar" />
+  //         <p>Email: {user.email}</p>
+  //         <p>Username: {user.username}</p>
+  //         <p>Created At: {user.createdAt}</p>
+  //         <p>Updated At: {user.updatedAt}</p>
+  //       </div>
+  //     ) : (
+  //       <p>Loading user data...</p>
+  //     )}
+  //   </div>
+  // );
 };
 
 export default Bakery;
