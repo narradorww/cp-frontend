@@ -1,26 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Bakery = () => {
   const [user, setUser] = useState(null);
 
-  const fetchUserData = async () => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      const response = await fetch('http://localhost:3001/auth/protected', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
+  const refreshToken = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/auth/refresh_token', {
+        refreshToken: localStorage.getItem('refreshToken')
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user.user);
-        console.log('User data:', data.user);
-      } else {
-        console.error('Failed to fetch user data');
+      localStorage.setItem('token', response.data.accessToken);
+      return response.data.accessToken;
+    } catch (error) {
+      console.error('Failed to refresh token:', error);
+      return null;
+    }
+  };
+
+  const fetchUserData = async () => {
+    let token = localStorage.getItem('token');
+
+    if (token) {
+      try {
+        const response = await axios.get('http://localhost:3001/auth/protected', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        setUser(response.data.user.user);
+        console.log('User data:', response.data.user);
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          token = await refreshToken();
+          if (token) {
+            fetchUserData();
+          } else {
+            console.error('Failed to fetch user data:', error);
+          }
+        } else {
+          console.error('Failed to fetch user data:', error);
+        }
       }
     } else {
       console.error('No token found');
