@@ -20,8 +20,7 @@ const AuthRedirect = () => {
 
       navigate('/bakery');
     } else {
-      // Redirecionar para a página de login em caso de falha na autenticação
-      // console.log('voltando para o login');
+
       // navigate('/login');
     }
   }, [navigate]);
