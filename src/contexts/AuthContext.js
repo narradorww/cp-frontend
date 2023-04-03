@@ -9,12 +9,31 @@ export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [accessToken, setAccessToken] = useState(localStorage.getItem('token') || null);
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken') || null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const isAuthenticated = accessToken && refreshToken;
     console.log('isAuthenticated:', isAuthenticated);
     setAuthenticated(isAuthenticated);
   }, [accessToken, refreshToken]);
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/auth/userinfo`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        setUser(response.data.user.user);
+      } catch (error) {
+        console.error('Failed to get user info:', error);
+      }
+    };
+    if (authenticated) {
+      getUserInfo();
+    }
+  }, [authenticated, accessToken]);
 
   const handleLogin = async (email, password) => {
     try {
@@ -27,6 +46,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('refreshToken', response.data.refreshToken);
       setAccessToken(response.data.accessToken);
       setRefreshToken(response.data.refreshToken);
+      setAuthenticated(true);
+      setUser(response.data.user.user);
+      console.log('response.data.user.user:', response.data.user.user)
 
     } catch (error) {
       console.error('Failed to login:', error);
@@ -37,6 +59,7 @@ export const AuthProvider = ({ children }) => {
     setAccessToken(null);
     setRefreshToken(null);
     setAuthenticated(false);
+    setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
   };
@@ -57,7 +80,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authenticated, accessToken, handleLogin, handleLogout, handleRefreshToken }}>
+    <AuthContext.Provider value={{ authenticated, accessToken, user, handleLogin, handleLogout, handleRefreshToken }}>
       {children}
     </AuthContext.Provider>
   );
