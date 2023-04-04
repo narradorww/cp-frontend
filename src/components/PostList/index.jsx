@@ -1,39 +1,24 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext, useEffect } from 'react';
+import { PostContext } from '../../contexts/PostContext';
+import Post from '../Post';
 
-function PostList() {
-  const [posts, setPosts] = useState([]);
+const PostList = () => {
+  const { posts, isLoading, fetchPosts } = useContext(PostContext);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/posts');
-        setPosts(response.data);
-      } catch (error) {
-        console.error(error);
-        // lidar com o erro de busca dos posts
-      }
-    };
     fetchPosts();
   }, []);
 
   return (
     <div>
-      {posts.map((post) => (
-        <div key={post._id}>
-          <h2>{post.title}</h2>
-          <p>{post.description}</p>
-          <p>{post.type}</p>
-          <p>{post.status}</p>
-          <p>{new Date(post.createdAt).toLocaleString()}</p>
-          {post.updatedAt !== post.createdAt && (
-            <p>{new Date(post.updatedAt).toLocaleString()}</p>
-          )}
-        </div>
-      ))}
+      <p>Aqui vai a lista de posts</p>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        posts.map((post) => <Post key={post._id} post={post} />)
+      )}
     </div>
   );
-}
+};
 
 export default PostList;
-

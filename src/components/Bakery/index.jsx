@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Avatar from '../../assets/img/avatarcp.png';
 import { AuthContext } from '../../contexts/AuthContext';
 import NewPost from '../NewPost';
+import PostList from '../PostList/index';
 
 function Bakery() {
   const { authenticated, handleLogout, user } = useContext(AuthContext);
@@ -19,6 +20,7 @@ function Bakery() {
         <p>Bem vindo {user && user.displayName}</p> 
         <button onClick={handleLogoutClick}>Logout</button>
         <NewPost />
+        <PostList />
         </>
       ) : (
         <p>You need to be authenticated to access this page</p>
