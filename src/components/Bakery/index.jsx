@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Avatar from '../../assets/img/avatarcp.png';
 import { AuthContext } from '../../contexts/AuthContext';
+import NewPost from '../NewPost';
 
 function Bakery() {
   const { authenticated, handleLogout, user } = useContext(AuthContext);
@@ -15,8 +16,9 @@ function Bakery() {
       <h1>Bakery</h1>
       {authenticated ? (
         <>
-        <p>Bem vindo {user && user.displayName}</p> {/*Verifica se user é null antes de acessar a propriedade displayName*/}
+        <p>Bem vindo {user && user.displayName}</p> 
         <button onClick={handleLogoutClick}>Logout</button>
+        <NewPost />
         </>
       ) : (
         <p>You need to be authenticated to access this page</p>
