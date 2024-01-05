@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# CP-Frontend (Português)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sobre o Projeto
+Bem-vindo ao repositório do frontend da CP, uma inovadora rede social dedicada aos amantes de pães. Aqui, os usuários podem compartilhar, descobrir e comentar sobre receitas de pães, criando uma comunidade vibrante e engajada.
 
-## Available Scripts
+### Funcionalidades
+- **Compartilhamento de Receitas:** Os usuários podem postar suas próprias receitas de pães, incluindo detalhes como ingredientes, tempo de preparo e fotos.
+- **Interação Social:** Possibilidade de curtir, comentar e compartilhar receitas, promovendo uma interação rica entre os membros da comunidade.
+- **Pesquisa Personalizada:** Busque receitas por ingredientes, tempo de preparo ou popularidade.
+- **Perfil do Usuário:** Personalize seu perfil, acompanhe suas receitas favoritas e interaja com outros usuários.
 
-In the project directory, you can run:
+## Tecnologias Utilizadas
+Este projeto foi desenvolvido utilizando React.js, integrando-se perfeitamente ao ecossistema MERN. A escolha dessa stack tecnológica garante uma experiência de usuário fluida e responsiva, ideal para aplicações web modernas.
 
-### `npm start`
+## Pré-requisitos
+Antes de iniciar, certifique-se de ter o Node.js e o npm instalados em sua máquina. Essas ferramentas são essenciais para a execução do projeto.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Como Clonar e Rodar o Projeto
+1. **Clone o repositório:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+´´git clone https://github.com/narradorww/cp-frontend.git´´
 
-### `npm test`
+2. **Entre no diretório do projeto:**
+cd cp-frontend
+3. **Instale as dependências:**
+npm install
+4. **Inicie o projeto:**
+5. Isso irá rodar o app em modo de desenvolvimento. Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contribuições
+Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o app ou adicionar novas funcionalidades, fique à vontade para criar um fork e enviar um pull request.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# CP-Frontend (English)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## About the Project
+Welcome to the frontend repository of CP, an innovative social network for bread enthusiasts. Here, users can share, discover, and discuss bread recipes, creating a vibrant and engaged community.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Features
+- **Recipe Sharing:** Users can post their own bread recipes, including details like ingredients, preparation time, and photos.
+- **Social Interaction:** Ability to like, comment, and share recipes, fostering rich interaction among community members.
+- **Custom Search:** Search for recipes by ingredients, preparation time, or popularity.
+- **User Profile:** Customize your profile, follow your favorite recipes, and interact with other users.
 
-### `npm run eject`
+## Technologies Used
+This project is developed using React.js, seamlessly integrating into the MERN ecosystem. The choice of this tech stack ensures a smooth and responsive user experience, ideal for modern web applications.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Prerequisites
+Before starting, make sure you have Node.js and npm installed on your machine. These tools are essential for running the project.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How to Clone and Run the Project
+1. **Clone the repository:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
